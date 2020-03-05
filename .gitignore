@@ -3,6 +3,8 @@
 /local.properties
 /.idea
 /build
+/buildSrc/build
+/buildSrc/.gradle
 /captures
 .externalNativeBuild
 .cxx
