@@ -12,7 +12,7 @@ object App {
 
 object Versions {
     val gradle = "3.5.3"
-    val kotlin = "1.3.41"
+    val kotlin = "1.3.50"
 
     val appcompat = "1.1.0"
     val cardview = "1.0.0"
@@ -59,6 +59,7 @@ object AppPlugins {
 
 object AppModule {
     val app = ":app"
+    val sdkBase = ":sdk-base"
 }
 
 object Deps {

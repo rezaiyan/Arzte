@@ -1,2 +1,2 @@
-include (AppModule.app)
+include (AppModule.app, AppModule.sdkBase)
 rootProject.name = App.name
