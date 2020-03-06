@@ -15,9 +15,10 @@ object Versions {
     val kotlin = "1.3.50"
 
     val appcompat = "1.1.0"
-    val cardview = "1.0.0"
     val material = "1.1.0-alpha10"
     val constraint = "1.1.3"
+    val cardview = "1.0.0"
+    val recyclerview = "1.0.0"
     val gson = "2.8.5"
     val okHttp = "3.12.0"
     val okHttpInterceptor = "3.8.1"
@@ -67,6 +68,7 @@ object Deps {
     val cardview = "androidx.cardview:cardview:${Versions.cardview}"
     val material = "com.google.android.material:material:${Versions.material}"
     val constraintLayout = "androidx.constraintlayout:constraintlayout:${Versions.constraint}"
+    val recyclerview = "androidx.recyclerview:recyclerview:${Versions.recyclerview}"
 
     val gson = "com.google.code.gson:gson:${Versions.gson}"
 

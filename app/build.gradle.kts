@@ -33,8 +33,11 @@ android {
 }
 
 dependencies {
+    implementation(project(AppModule.sdkBase))
     implementation(Deps.kotlin)
+    implementation(Deps.material)
     implementation(Deps.appcompat)
+    implementation(Deps.recyclerview)
     implementation(Deps.ktx)
     testImplementation(TestLibraries.junit)
     androidTestImplementation(TestLibraries.runner)
