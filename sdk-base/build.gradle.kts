@@ -35,6 +35,8 @@ dependencies {
     implementation(Deps.kotlin)
     implementation(Deps.appcompat)
     implementation(Deps.ktx)
+    implementation(Deps.material)
+    implementation(Deps.recyclerview)
     testImplementation(TestLibraries.junit)
     androidTestImplementation(TestLibraries.runner)
     androidTestImplementation(TestLibraries.espressoCore)
