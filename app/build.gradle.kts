@@ -12,6 +12,7 @@ android {
     buildToolsVersion(App.buildTools)
 
     defaultConfig {
+        testInstrumentationRunner = TestLibraries.androidJUnitRunner
         applicationId = App.id
         minSdkVersion(App.minSdk)
         targetSdkVersion(App.targetSdk)
@@ -40,6 +41,8 @@ dependencies {
     implementation(Deps.recyclerview)
     implementation(Deps.ktx)
     testImplementation(TestLibraries.junit)
+    debugImplementation(TestLibraries.fragmentTest)
+    androidTestImplementation(TestLibraries.testExt)
     androidTestImplementation(TestLibraries.runner)
     androidTestImplementation(TestLibraries.espressoCore)
 }

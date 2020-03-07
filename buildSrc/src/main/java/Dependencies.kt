@@ -36,6 +36,8 @@ object Versions {
     val timber = "4.7.1"
 
     val junit = "4.12"
+    val testExt = "1.1.1"
+    val fragmentTest = "1.2.2"
     val mockito = "2.18.3"
     val assertjCore = "3.11.1"
     val mockitoKotlin = "2.0.0-RC1"
@@ -95,10 +97,11 @@ object Deps {
 
 
 object TestLibraries {
-    val kotlin = "org.jetbrains.kotlin:kotlin-stdlib-jdk7:${Versions.kotlin}"
-    val kotlinTest = "org.jetbrains.kotlin:kotlin-test-junit:${Versions.kotlin}"
     val androidJUnitRunner = "androidx.test.runner.AndroidJUnitRunner"
+    val kotlinTest = "org.jetbrains.kotlin:kotlin-test-junit:${Versions.kotlin}"
+    val fragmentTest = "androidx.fragment:fragment-testing:${Versions.fragmentTest}"
     val junit = "junit:junit:${Versions.junit}"
+    val testExt = "androidx.test.ext:junit:${Versions.testExt}"
     val jupiterApi = "org.junit.jupiter:junit-jupiter-api:${Versions.junit}"
     val jupiterEngine = "org.junit.jupiter:junit-jupiter-engine:${Versions.junit}"
     val runner = "androidx.test:runner:1.1.0"
