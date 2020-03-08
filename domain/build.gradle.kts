@@ -37,4 +37,6 @@ dependencies {
     implementation(Deps.coroutinesAndroid)
     implementation(project(AppModule.data))
     implementation(project(AppModule.sdkBase))
+    testImplementation(TestLibraries.kluent)
+    testImplementation(TestLibraries.junit)
 }
