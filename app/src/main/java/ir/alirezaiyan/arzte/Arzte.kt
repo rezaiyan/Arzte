@@ -1,9 +1,9 @@
 package ir.alirezaiyan.arzte
 
 import android.app.Application
-import ir.alirezaiyan.arzte.core.di.ApplicationComponent
-import ir.alirezaiyan.arzte.core.di.ApplicationModule
-import ir.alirezaiyan.arzte.core.di.DaggerApplicationComponent
+import ir.alirezaiyan.arzte.di.ApplicationComponent
+import ir.alirezaiyan.arzte.di.ApplicationModule
+import ir.alirezaiyan.arzte.di.DaggerApplicationComponent
 
 /**
  * @author Ali (alirezaiyann@gmail.com)

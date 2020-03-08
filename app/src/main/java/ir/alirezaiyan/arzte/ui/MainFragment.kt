@@ -10,7 +10,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import ir.alirezaiyan.arzte.Arzte
 import ir.alirezaiyan.arzte.R
-import ir.alirezaiyan.arzte.core.di.ApplicationComponent
+import ir.alirezaiyan.arzte.di.ApplicationComponent
 import ir.alirezaiyan.arzte.ui.doctorDetails.DoctorDetailsActivity
 import ir.alirezaiyan.arzte.ui.recentDoctors.RecentDoctorsAdapter
 import ir.alirezaiyan.arzte.ui.vivyDoctors.VivyDoctorsAdapter
@@ -73,8 +73,8 @@ class MainFragment : BaseFragment() {
             .layoutManager(LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false))
             .build()
 
-        fragmentHeaderContainer.addView(recentDoctorListComponent)
-        fragmentHeaderContainer.gone()
+        recentContainer.addView(recentDoctorListComponent)
+        recentContainer.gone()
 
         val doctorListComponent = DoctorListComponent
             .Builder<VivyDoctorsAdapter.ViewHolder>(requireContext())
@@ -123,9 +123,9 @@ class MainFragment : BaseFragment() {
     private fun renderRecentList(doctors: List<Doctor>?) {
         recentDoctorsAdapter.collection = doctors.orEmpty()
         if (recentDoctorsAdapter.itemCount > 0) {
-            fragmentHeaderContainer.visible()
+            recentContainer.visible()
         } else {
-            fragmentHeaderContainer.gone()
+            recentContainer.gone()
         }
     }
 

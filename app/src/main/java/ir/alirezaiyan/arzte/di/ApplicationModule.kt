@@ -1,4 +1,4 @@
-package ir.alirezaiyan.arzte.core.di
+package ir.alirezaiyan.arzte.di
 
 import android.content.Context
 import dagger.Module
