@@ -1,29 +1,44 @@
 <androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/main_content"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <com.google.android.material.appbar.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:elevation="0dp">
 
         <FrameLayout
-            android:id="@+id/mainContainer"
-            android:layout_height="match_parent"
+            android:id="@+id/fragmentHeaderContainer"
             android:layout_width="match_parent"
-            app:layout_behavior="@string/appbar_scrolling_view_behavior">
+            android:layout_height="200dp"
+            android:orientation="vertical"
+            app:layout_scrollFlags="scroll|enterAlways"
+            tools:context=".BaseActivity" />
 
-            <TextView
-                android:id="@+id/emptyView"
-                android:layout_width="100dp"
-                android:layout_height="100dp"
-                android:layout_gravity="center"
-                android:gravity="center"
-                android:text="@string/not_found"
-                android:textAppearance="@style/TextAppearance.AppCompat.Title"
-                android:textColor="@color/colorTitle"
-                android:visibility="invisible"
-                tools:visibility="visible" />
+    </com.google.android.material.appbar.AppBarLayout>
 
-        </FrameLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:id="@+id/mainContainer"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+        <TextView
+            android:id="@+id/emptyView"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:text="@string/not_found"
+            android:textAppearance="@style/TextAppearance.AppCompat.Title"
+            android:textColor="@color/colorTitle"
+            android:visibility="gone"
+            tools:visibility="visible" />
+
+    </LinearLayout>
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

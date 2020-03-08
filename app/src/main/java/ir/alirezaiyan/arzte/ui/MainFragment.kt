@@ -2,8 +2,8 @@ package ir.alirezaiyan.arzte.ui
 
 import android.os.Bundle
 import android.view.View
-import android.widget.FrameLayout
 import android.widget.ImageView
+import android.widget.LinearLayout
 import androidx.annotation.StringRes
 import androidx.core.app.ActivityOptionsCompat
 import androidx.fragment.app.FragmentActivity
@@ -34,7 +34,8 @@ import javax.inject.Inject
 class MainFragment : BaseFragment() {
 
     override fun layoutId() = R.layout.fragment_main
-    private lateinit var mainContainer: FrameLayout
+    private lateinit var mainContainer: LinearLayout
+
     private val appComponent: ApplicationComponent by lazy(mode = LazyThreadSafetyMode.NONE) {
         (activity?.application as Arzte).appComponent
     }
@@ -61,6 +62,17 @@ class MainFragment : BaseFragment() {
             observe(doctors, ::renderMoviesList)
             failure(failure, ::handleFailure)
         }
+
+        val recentDoctorListComponent = DoctorListComponent
+            .Builder<VivyDoctorsAdapter.ViewHolder>(requireContext())
+            .title(getString(R.string.vivy_doctors_list))
+            .adapter(vivyDoctorsAdapter)
+            .scrollListener(endlessScroll)
+            .layoutManager(LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false))
+            .build()
+
+        fragmentHeaderContainer.addView(recentDoctorListComponent)
+
 
         val doctorListComponent = DoctorListComponent
             .Builder<VivyDoctorsAdapter.ViewHolder>(requireContext())
