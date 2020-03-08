@@ -7,7 +7,9 @@ import androidx.recyclerview.widget.RecyclerView
 import ir.alirezaiyan.arzte.R
 import ir.alirezaiyan.base.extention.loadFromUrl
 import ir.alirezaiyan.data.entity.Doctor
+import ir.alirezaiyan.data.entity.DoctorRateComparator
 import kotlinx.android.synthetic.main.item_doctor_v.view.*
+import java.util.*
 import javax.inject.Inject
 import kotlin.properties.Delegates
 
@@ -19,8 +21,10 @@ class VivyDoctorsAdapter
 @Inject constructor() : RecyclerView.Adapter<VivyDoctorsAdapter.ViewHolder>() {
 
     internal var collection: List<Doctor> by Delegates.observable(emptyList()) { _, _, _ ->
-        notifyDataSetChanged()
+        Collections.sort(collection, DoctorRateComparator())
+        notifyItemRangeChanged(0, itemCount)
     }
+
     internal var clickListener: (Doctor, View) -> Unit = { _, _ -> }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) =
