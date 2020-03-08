@@ -21,10 +21,12 @@ class Cache @Inject constructor() {
         val doctorJsonList = getRecentDoctors()
 
         doctor?.let {
-            if (doctorJsonList.size > 2) {
-                doctorJsonList.removeAt(0)
+            if (!doctorJsonList.contains(doctor)) {
+                if (doctorJsonList.size > 2) {
+                    doctorJsonList.removeAt(0)
+                }
+                doctorJsonList.add(doctor)
             }
-            doctorJsonList.add(doctor)
         }
 
         val recentDoctors = Gson().toJson(doctorJsonList)

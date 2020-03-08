@@ -32,6 +32,20 @@ data class Doctor(
     var rating: Double? = null
         get() = round(field!!)
 
+
+    override fun equals(other: Any?): Boolean {
+        if (other == null || other !is Doctor) {
+            return false
+        }
+        return other.id.equals(id)
+    }
+
+    override fun hashCode(): Int {
+        var hash = 7
+        hash = 31 * hash + id.hashCode()
+        return hash
+    }
+
     override fun toString(): String {
         return Gson().toJson(this)
     }
