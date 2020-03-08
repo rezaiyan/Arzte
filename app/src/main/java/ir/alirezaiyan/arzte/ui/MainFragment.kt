@@ -3,10 +3,25 @@ package ir.alirezaiyan.arzte.ui
 import android.os.Bundle
 import android.view.View
 import android.widget.FrameLayout
+import androidx.annotation.StringRes
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
+import ir.alirezaiyan.arzte.Arzte
 import ir.alirezaiyan.arzte.R
+import ir.alirezaiyan.arzte.core.di.ApplicationComponent
+import ir.alirezaiyan.arzte.ui.vivyDoctors.VivyDoctorsAdapter
 import ir.alirezaiyan.base.BaseFragment
 import ir.alirezaiyan.base.component.DoctorListComponent
+import ir.alirezaiyan.base.ext.Failure
+import ir.alirezaiyan.base.extention.invisible
+import ir.alirezaiyan.base.extention.visible
+import ir.alirezaiyan.base.failure
+import ir.alirezaiyan.base.observe
+import ir.alirezaiyan.base.utils.EndlessOnScrollListener
+import ir.alirezaiyan.base.viewModel
+import ir.alirezaiyan.data.entity.Doctor
+import kotlinx.android.synthetic.main.fragment_main.*
+import javax.inject.Inject
 
 /**
  * @author Ali (alirezaiyann@gmail.com)
@@ -15,20 +30,77 @@ import ir.alirezaiyan.base.component.DoctorListComponent
 class MainFragment : BaseFragment() {
 
     override fun layoutId() = R.layout.fragment_main
+    private lateinit var mainContainer: FrameLayout
+    private val appComponent: ApplicationComponent by lazy(mode = LazyThreadSafetyMode.NONE) {
+        (activity?.application as Arzte).appComponent
+    }
+    @Inject
+    lateinit var viewModelFactory: ViewModelProvider.Factory
+    @Inject
+    lateinit var vivyDoctorsAdapter: VivyDoctorsAdapter
+
+    private lateinit var mainViewModel: MainViewModel
+
+    private val endlessScroll = object : EndlessOnScrollListener() {
+        override fun onLoadMore() {
+            loadMoviesList()
+        }
+    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val mainContainer = view.findViewById<FrameLayout>(R.id.mainContainer)
+        appComponent.inject(this)
+        mainContainer = view.findViewById(R.id.mainContainer)
+
+        showProgress()
+        mainViewModel = viewModel(viewModelFactory) {
+            observe(doctors, ::renderMoviesList)
+            failure(failure, ::handleFailure)
+        }
 
         val doctorListComponent = DoctorListComponent
-            .Builder<DoctorsViewHolder>(requireContext())
+            .Builder<VivyDoctorsAdapter.ViewHolder>(requireContext())
             .title(getString(R.string.doctors_list))
-            .adapter(ViviDoctorsAdapter(listOf()))
+            .adapter(vivyDoctorsAdapter)
+            .scrollListener(endlessScroll)
             .layoutManager(LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false))
             .build()
 
         mainContainer.addView(doctorListComponent)
 
-
     }
+
+    private fun loadMoviesList() {
+        emptyView.invisible()
+        mainContainer.visible()
+        showProgress()
+        mainViewModel.loadDoctors()
+    }
+
+    private fun renderMoviesList(movies: List<Doctor>?) {
+
+        vivyDoctorsAdapter.collection += movies.orEmpty()
+
+        hideProgress()
+    }
+
+    private fun handleFailure(failure: Failure?) {
+        when (failure) {
+            is Failure.NetworkConnection -> renderFailure(R.string.failure_network_connection)
+            is Failure.ServerError -> renderFailure(R.string.failure_server_error)
+            is Failure.EndOfList -> {
+                endlessScroll.onReachEnd()
+                hideProgress()
+            }
+        }
+    }
+
+    private fun renderFailure(@StringRes message: Int) {
+        endlessScroll.onFailure()
+        mainContainer.invisible()
+        emptyView.visible()
+        hideProgress()
+        notifyWithAction(message, R.string.action_refresh, ::loadMoviesList)
+    }
+
 }

@@ -1,6 +1,7 @@
 plugins {
     id(AppPlugins.androidApp)
     id(AppPlugins.kotlin)
+    id(AppPlugins.kotlinKapt)
     id(AppPlugins.kotlinExt)
 }
 
@@ -35,11 +36,19 @@ android {
 
 dependencies {
     implementation(project(AppModule.sdkBase))
+    implementation(project(AppModule.data))
+    implementation(project(AppModule.domain))
     implementation(Deps.kotlin)
     implementation(Deps.material)
     implementation(Deps.appcompat)
     implementation(Deps.recyclerview)
     implementation(Deps.ktx)
+    kapt(Deps.daggerCompiler)
+    implementation(Deps.dagger)
+    implementation(Deps.retrofit)
+    implementation(Deps.retrofitGson)
+    implementation(Deps.okhttp)
+    implementation(Deps.okhttpInterceptor)
     testImplementation(TestLibraries.junit)
     debugImplementation(TestLibraries.fragmentTest)
     androidTestImplementation(TestLibraries.testExt)

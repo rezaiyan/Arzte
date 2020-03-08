@@ -7,18 +7,18 @@
     tools:parentTag="android.widget.LinearLayout">
 
     <TextView
-        android:id="@+id/component_doctorlist_title"
+        android:id="@+id/componentTitle"
         style="@style/TextAppearance.AppCompat.Title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="16dp"
         android:layout_marginRight="16dp"
         android:fontFamily="sans-serif-condensed"
-        android:textSize="32dp"
+        android:textSize="32sp"
         tools:text="@tools:sample/lorem" />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/component_doctorlist_recyclerview"
+        android:id="@+id/componentList"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="16dp"

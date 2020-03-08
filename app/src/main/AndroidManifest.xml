@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="ir.alirezaiyan.arzte">
 
+    <uses-permission android:name="android.permission.INTERNET" />
     <application
         android:name=".Arzte"
         android:allowBackup="false"

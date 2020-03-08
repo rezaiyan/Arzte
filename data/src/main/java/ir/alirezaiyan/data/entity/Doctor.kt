@@ -1,4 +1,4 @@
-package ir.alirezaiyan.base
+package ir.alirezaiyan.data.entity
 
 /**
  * @author Ali (alirezaiyann@gmail.com)
@@ -6,6 +6,8 @@ package ir.alirezaiyan.base
  */
 
 data class DoctorResponse(var lastKey: String?, var doctors: List<Doctor>)
+
+fun DoctorResponse.empty() = DoctorResponse("", emptyList())
 
 data class Doctor(
     var id: String? = null,

@@ -4,9 +4,10 @@ import android.annotation.SuppressLint
 import android.content.Context
 import android.view.LayoutInflater
 import android.widget.LinearLayout
-import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import ir.alirezaiyan.base.R
+import ir.alirezaiyan.base.utils.EndlessOnScrollListener
+import kotlinx.android.synthetic.main.component_doctor_list.view.*
 
 /**
  * @author Ali (alirezaiyann@gmail.com)
@@ -16,8 +17,9 @@ import ir.alirezaiyan.base.R
 class DoctorListComponent<VH : RecyclerView.ViewHolder?> private constructor(
     context: Context,
     title: String?,
-    layoutManager: RecyclerView.LayoutManager?,
-    adapter: RecyclerView.Adapter<VH>?
+    layoutManager: RecyclerView.LayoutManager,
+    scrollListener: EndlessOnScrollListener,
+    adapter: RecyclerView.Adapter<VH>
 ) : LinearLayout(context) {
 
     init {
@@ -26,35 +28,43 @@ class DoctorListComponent<VH : RecyclerView.ViewHolder?> private constructor(
 
         orientation = VERTICAL
 
-        prepare(title, layoutManager, adapter)
+        prepare(title, layoutManager, scrollListener, adapter)
     }
 
     private fun prepare(
         title: String?,
-        layoutManager: RecyclerView.LayoutManager?,
-        adapter: RecyclerView.Adapter<VH>?
+        layoutManager: RecyclerView.LayoutManager,
+        scrollListener: EndlessOnScrollListener,
+        adapter: RecyclerView.Adapter<VH>
     ) {
 
-        findViewById<TextView>(R.id.component_doctorlist_title).text = title
-        val recyclerView = findViewById<RecyclerView>(R.id.component_doctorlist_recyclerview)
-        recyclerView.layoutManager = layoutManager
-        recyclerView.adapter = adapter
+        componentTitle.text = title
+        componentList.apply {
+            this.layoutManager = layoutManager
+            this.adapter = adapter
+            this.addOnScrollListener(scrollListener)
+            this.setHasFixedSize(true)
+            this.setItemViewCacheSize(20)
+        }
 
     }
 
-    data class Builder<VH : RecyclerView.ViewHolder>(
-        var context: Context,
-        var title: String? = "",
-        var layoutManager: RecyclerView.LayoutManager? = null,
-        var adapter: RecyclerView.Adapter<VH>? = null
-    ) {
+    data class Builder<VH : RecyclerView.ViewHolder>(var context: Context) {
+
+        var title: String? = ""
+        private lateinit var scrollListener: EndlessOnScrollListener
+        private lateinit var layoutManager: RecyclerView.LayoutManager
+        private lateinit var adapter: RecyclerView.Adapter<VH>
 
         fun title(title: String) = apply { this.title = title }
         fun layoutManager(layoutManager: RecyclerView.LayoutManager) =
             apply { this.layoutManager = layoutManager }
 
+        fun scrollListener(scrollListener: EndlessOnScrollListener) =
+            apply { this.scrollListener = scrollListener }
+
         fun adapter(adapter: RecyclerView.Adapter<VH>) = apply { this.adapter = adapter }
-        fun build() = DoctorListComponent(context, title, layoutManager, adapter)
+        fun build() = DoctorListComponent(context, title, layoutManager, scrollListener, adapter)
     }
 
 }
