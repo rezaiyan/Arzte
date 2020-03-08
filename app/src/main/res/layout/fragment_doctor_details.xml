@@ -1,103 +1,109 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/detailContainer"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:layout_height="wrap_content">
 
-    <ImageView
-        android:id="@+id/avatar"
-        android:layout_width="match_parent"
-        android:layout_height="280dp"
-        android:layout_alignParentEnd="true"
-        android:layout_gravity="right"
-        android:contentDescription="Doctor Avatar"
-        android:scaleType="centerCrop"
-        android:transitionName="@string/avatar_transaction_name"
-        tools:ignore="HardcodedText" />
-
-    <LinearLayout
+    <RelativeLayout
+        android:id="@+id/detailContainer"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/avatar"
-        android:orientation="vertical"
-        android:paddingLeft="16dp"
-        android:paddingRight="16dp">
+        android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/name"
-            style="@style/TextAppearance.AppCompat.Title"
+        <ImageView
+            android:id="@+id/avatar"
+            android:layout_width="match_parent"
+            android:layout_height="280dp"
+            android:layout_alignParentEnd="true"
+            android:layout_gravity="right"
+            android:contentDescription="Doctor Avatar"
+            android:scaleType="centerCrop"
+            android:transitionName="@string/avatar_transaction_name"
+            tools:ignore="HardcodedText" />
+
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textColor="@color/colorTitle"
-            android:textSize="30sp"
-            tools:text="@tools:sample/last_names" />
+            android:layout_below="@id/avatar"
+            android:orientation="vertical"
+            android:paddingLeft="16dp"
+            android:paddingRight="16dp">
 
-        <RatingBar
-            android:id="@+id/ratingBar"
-            style="@style/Widget.AppCompat.RatingBar.Small"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/standard_margin" />
+            <TextView
+                android:id="@+id/name"
+                style="@style/TextAppearance.AppCompat.Title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/colorTitle"
+                android:textSize="30sp"
+                tools:text="@tools:sample/last_names" />
 
-        <com.google.android.material.button.MaterialButton
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="-4dp"
-            android:layout_marginTop="@dimen/standard_margin"
-            android:backgroundTint="@color/colorAccent"
-            android:text="@string/add_a_review"
-            android:textColor="#FFF" />
+            <RatingBar
+                android:id="@+id/ratingBar"
+                style="@style/Widget.AppCompat.RatingBar.Small"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/standard_margin" />
 
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="0.5dp"
-            android:layout_margin="16dp"
-            android:background="#535353" />
+            <com.google.android.material.button.MaterialButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="-4dp"
+                android:layout_marginTop="@dimen/standard_margin"
+                android:backgroundTint="@color/colorAccent"
+                android:text="@string/add_a_review"
+                android:textColor="#FFF" />
 
-
-        <TextView
-            android:id="@+id/basic_info"
-            style="@style/TextAppearance.MaterialComponents.Subtitle1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/basic_info"
-            android:textColor="@color/colorAccent"
-            android:textSize="24sp"
-            android:textStyle="bold" />
-
-        <TextView
-            android:id="@+id/address"
-            style="@style/TextAppearance.MaterialComponents.Subtitle2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:drawableStart="@drawable/ic_location_on_black_24dp"
-            android:drawablePadding="4dp"
-            android:text="@string/basic_info" />
-
-        <TextView
-            android:id="@+id/phone"
-            style="@style/TextAppearance.MaterialComponents.Subtitle2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:drawableStart="@drawable/ic_phone_black_24dp"
-            android:drawablePadding="4dp"
-            android:text="@string/basic_info" />
-
-        <TextView
-            android:id="@+id/website"
-            style="@style/TextAppearance.MaterialComponents.Subtitle2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:drawableStart="@drawable/ic_link_black_24dp"
-            android:drawablePadding="4dp"
-            android:text="@string/basic_info" />
-
-    </LinearLayout>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"
+                android:layout_margin="16dp"
+                android:background="#535353" />
 
 
-</RelativeLayout>
+            <TextView
+                android:id="@+id/basic_info"
+                style="@style/TextAppearance.MaterialComponents.Subtitle1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/basic_info"
+                android:textColor="@color/colorAccent"
+                android:textSize="24sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/address"
+                style="@style/TextAppearance.MaterialComponents.Subtitle2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:drawableStart="@drawable/ic_location_on_black_24dp"
+                android:drawablePadding="4dp"
+                android:text="@string/basic_info" />
+
+            <TextView
+                android:id="@+id/phone"
+                style="@style/TextAppearance.MaterialComponents.Subtitle2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:drawableStart="@drawable/ic_phone_black_24dp"
+                android:drawablePadding="4dp"
+                android:text="@string/basic_info" />
+
+            <TextView
+                android:id="@+id/website"
+                style="@style/TextAppearance.MaterialComponents.Subtitle2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:drawableStart="@drawable/ic_link_black_24dp"
+                android:drawablePadding="4dp"
+                android:text="@string/basic_info" />
+
+        </LinearLayout>
+
+
+    </RelativeLayout>
+
+</ScrollView>

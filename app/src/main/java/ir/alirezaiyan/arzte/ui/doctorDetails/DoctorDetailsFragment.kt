@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.View
 import ir.alirezaiyan.arzte.R
 import ir.alirezaiyan.base.BaseFragment
+import ir.alirezaiyan.base.extention.gone
 import ir.alirezaiyan.base.extention.loadFromUrl
 import ir.alirezaiyan.data.entity.Doctor
 import ir.alirezaiyan.data.entity.toDoctor
@@ -31,11 +32,11 @@ class DoctorDetailsFragment : BaseFragment() {
         super.onViewCreated(view, savedInstanceState)
         val doctor: Doctor = (arguments!!.getString(INTENT_EXTRA_PARAM_DOCTOR))!!.toDoctor()
         ratingBar.rating = doctor.rating?.toFloat()!!
-        name.text = doctor.name
-        address.text = doctor.address
-        phone.text = doctor.phoneNumber
-        website.text = doctor.website
         avatar.loadFromUrl(doctor.photoId)
+        name.text = doctor.name
+        if (doctor.address.isNullOrBlank()) address.gone() else address.text = doctor.address
+        if (doctor.phoneNumber.isNullOrBlank()) phone.gone() else phone.text = doctor.phoneNumber
+        if (doctor.website.isNullOrBlank()) website.gone() else website.text = doctor.website
 
     }
 

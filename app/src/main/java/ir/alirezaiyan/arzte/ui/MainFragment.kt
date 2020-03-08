@@ -60,7 +60,7 @@ class MainFragment : BaseFragment() {
 
         showProgress()
         mainViewModel = viewModel(viewModelFactory) {
-            observe(vivyDoctorsLiveData, ::renderVivyList)
+            observe(vivyDoctorsLiveData, ::renderVivyDoctorList)
             observe(recentDoctorsLiveData, ::renderRecentList)
             failure(failure, ::handleFailure)
         }
@@ -85,6 +85,7 @@ class MainFragment : BaseFragment() {
             .build()
 
         mainContainer.addView(doctorListComponent)
+        mainContainer.gone()
 
 
         val onVivyDoctorClickListener: (Doctor, View) -> Unit = { doctor, navigationExtras ->
@@ -107,10 +108,15 @@ class MainFragment : BaseFragment() {
         mainViewModel.loadDoctors()
     }
 
-    private fun renderVivyList(doctors: List<Doctor>?) {
-        doctors?.sortedBy { it.rating!!.toFloat() }
+    private fun renderVivyDoctorList(doctors: List<Doctor>?) {
         vivyDoctorsAdapter.collection += doctors.orEmpty()
-
+        if (vivyDoctorsAdapter.collection.isEmpty()) {
+            emptyView.gone()
+            mainContainer.gone()
+        } else {
+            emptyView.gone()
+            mainContainer.visible()
+        }
         hideProgress()
     }
 
