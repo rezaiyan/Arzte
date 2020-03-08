@@ -3,7 +3,7 @@ object App {
     const val name = "Arzte"
     const val compileSdk = 29
     const val buildTools = "29.0.2"
-    const val minSdk = 19
+    const val minSdk = 21
     const val targetSdk = 29
     const val versionCode = 1
     const val versionName = "1.0.0"
@@ -18,6 +18,7 @@ object Versions {
     const val material = "1.1.0-alpha10"
     const val recyclerview = "1.0.0"
     const val dagger = "2.11"
+    val gson = "2.8.5"
     const val picasso = "2.71828"
     const val okHttp = "3.12.0"
     const val okHttpInterceptor = "3.8.1"
@@ -68,6 +69,7 @@ object Deps {
 
     const val daggerCompiler = "com.google.dagger:dagger-compiler:${Versions.dagger}"
     const val dagger = "com.google.dagger:dagger:${Versions.dagger}"
+    val gson = "com.google.code.gson:gson:${Versions.gson}"
 
     const val picasso = "com.squareup.picasso:picasso:${Versions.picasso}"
 

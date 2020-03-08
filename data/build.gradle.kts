@@ -34,6 +34,7 @@ android {
 dependencies {
     implementation(project(AppModule.sdkBase))
     implementation(Deps.kotlin)
+    implementation(Deps.gson)
     implementation(Deps.dagger)
     implementation(Deps.retrofit)
 }

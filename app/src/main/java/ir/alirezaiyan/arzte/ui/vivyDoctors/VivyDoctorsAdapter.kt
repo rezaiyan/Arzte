@@ -21,6 +21,7 @@ class VivyDoctorsAdapter
     internal var collection: List<Doctor> by Delegates.observable(emptyList()) { _, _, _ ->
         notifyDataSetChanged()
     }
+    internal var clickListener: (Doctor, View) -> Unit = { _, _ -> }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) =
         ViewHolder(
@@ -32,19 +33,19 @@ class VivyDoctorsAdapter
         )
 
     override fun onBindViewHolder(viewHolder: ViewHolder, position: Int) =
-        viewHolder.bind(collection[position])
+        viewHolder.bind(collection[position], clickListener)
 
     override fun getItemCount() = collection.size
 
 
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
-        fun bind(doctor: Doctor) {
+        fun bind(doctor: Doctor, clickListener: (Doctor, View) -> Unit) {
             itemView.name.text = doctor.name
             itemView.description.text = doctor.address
             itemView.avatar.loadFromUrl(doctor.photoId)
             itemView.rateBar.rating = doctor.rating?.toFloat()!!
-//            itemView.setOnClickListener { clickListener(doctorView, Extras(itemView.avatar)) }
+            itemView.setOnClickListener { clickListener(doctor, itemView.avatar) }
         }
     }
 }

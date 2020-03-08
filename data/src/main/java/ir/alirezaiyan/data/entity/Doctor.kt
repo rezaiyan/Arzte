@@ -1,13 +1,13 @@
 package ir.alirezaiyan.data.entity
 
+import com.google.gson.Gson
+
 /**
  * @author Ali (alirezaiyann@gmail.com)
  * @since 3/5/2020 1:51 PM.
  */
 
 data class DoctorResponse(var lastKey: String?, var doctors: List<Doctor>)
-
-fun DoctorResponse.empty() = DoctorResponse("", emptyList())
 
 data class Doctor(
     var id: String? = null,
@@ -27,4 +27,11 @@ data class Doctor(
     var openingHours: List<String>? = null,
     var integration: Any? = null,
     var translation: Any? = null
-)
+) {
+
+    override fun toString(): String {
+        return Gson().toJson(this)
+    }
+}
+
+fun String.toDoctor() = Gson().fromJson(this, Doctor::class.java)!!

@@ -16,8 +16,7 @@ class DoctorsRepositoryImpl @Inject constructor(private val service: DoctorsServ
     override fun doctors(): Either<Failure, List<Doctor>> {
         return if (lastKey != null) {
             request(
-                service.doctors(lastKey),
-                { lastKey = it.lastKey; it.doctors },
+                service.doctors(lastKey), { lastKey = it.lastKey; it.doctors },
                 DoctorResponse("", emptyList())
             )
         } else {

@@ -5,6 +5,8 @@ plugins {
     id(AppPlugins.kotlinExt)
 }
 
+androidExtensions { isExperimental = true }
+
 android {
 
     compileOptions.sourceCompatibility = JavaVersion.VERSION_1_8
@@ -47,6 +49,7 @@ dependencies {
     implementation(Deps.dagger)
     implementation(Deps.retrofit)
     implementation(Deps.retrofitGson)
+    implementation(Deps.gson)
     implementation(Deps.okhttp)
     implementation(Deps.okhttpInterceptor)
     testImplementation(TestLibraries.junit)

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="doctors_list">Vivi Doctors</string>
+    <string name="vivy_doctors_list">Vivy Doctors</string>
 
 
     <string name="failure_network_connection">No Network Connection.</string>
@@ -8,5 +8,9 @@
     <string name="failure_doctors_list_unavailable">Movies Unavailable.</string>
     <string name="action_refresh">Refresh</string>
     <string name="not_found">404 \n\n Not Found</string>
+    <string name="avatar_transaction_name">avatar</string>
+    <string name="fullname_transaction_name">fullname</string>
+    <string name="basic_info">BASIC INFO</string>
+    <string name="add_a_review">Add a review</string>
 
 </resources>

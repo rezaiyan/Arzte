@@ -3,12 +3,16 @@ package ir.alirezaiyan.arzte.ui
 import android.os.Bundle
 import android.view.View
 import android.widget.FrameLayout
+import android.widget.ImageView
 import androidx.annotation.StringRes
+import androidx.core.app.ActivityOptionsCompat
+import androidx.fragment.app.FragmentActivity
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import ir.alirezaiyan.arzte.Arzte
 import ir.alirezaiyan.arzte.R
 import ir.alirezaiyan.arzte.core.di.ApplicationComponent
+import ir.alirezaiyan.arzte.ui.doctorDetails.DoctorDetailsActivity
 import ir.alirezaiyan.arzte.ui.vivyDoctors.VivyDoctorsAdapter
 import ir.alirezaiyan.base.BaseFragment
 import ir.alirezaiyan.base.component.DoctorListComponent
@@ -43,7 +47,7 @@ class MainFragment : BaseFragment() {
 
     private val endlessScroll = object : EndlessOnScrollListener() {
         override fun onLoadMore() {
-            loadMoviesList()
+            loadDoctorsList()
         }
     }
 
@@ -60,7 +64,7 @@ class MainFragment : BaseFragment() {
 
         val doctorListComponent = DoctorListComponent
             .Builder<VivyDoctorsAdapter.ViewHolder>(requireContext())
-            .title(getString(R.string.doctors_list))
+            .title(getString(R.string.vivy_doctors_list))
             .adapter(vivyDoctorsAdapter)
             .scrollListener(endlessScroll)
             .layoutManager(LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false))
@@ -68,18 +72,21 @@ class MainFragment : BaseFragment() {
 
         mainContainer.addView(doctorListComponent)
 
+
+        vivyDoctorsAdapter.clickListener = { movie, navigationExtras ->
+            showDoctorDetails(activity!!, movie, navigationExtras)
+        }
     }
 
-    private fun loadMoviesList() {
+    private fun loadDoctorsList() {
         emptyView.invisible()
         mainContainer.visible()
         showProgress()
         mainViewModel.loadDoctors()
     }
 
-    private fun renderMoviesList(movies: List<Doctor>?) {
-
-        vivyDoctorsAdapter.collection += movies.orEmpty()
+    private fun renderMoviesList(doctors: List<Doctor>?) {
+        vivyDoctorsAdapter.collection += doctors.orEmpty()
 
         hideProgress()
     }
@@ -100,7 +107,14 @@ class MainFragment : BaseFragment() {
         mainContainer.invisible()
         emptyView.visible()
         hideProgress()
-        notifyWithAction(message, R.string.action_refresh, ::loadMoviesList)
+        notifyWithAction(message, R.string.action_refresh, ::loadDoctorsList)
     }
 
+    private fun showDoctorDetails(activity: FragmentActivity, doctor: Doctor, view: View) {
+        val intent = DoctorDetailsActivity.callingIntent(activity, doctor)
+        val sharedView = view as ImageView
+        val activityOptions = ActivityOptionsCompat
+            .makeSceneTransitionAnimation(activity, sharedView, sharedView.transitionName)
+        activity.startActivity(intent, activityOptions.toBundle())
+    }
 }
