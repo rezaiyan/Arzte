@@ -26,6 +26,9 @@ class Cache @Inject constructor() {
                     doctorJsonList.removeAt(0)
                 }
                 doctorJsonList.add(doctor)
+            } else {
+                doctorJsonList.remove(doctor)
+                doctorJsonList.add(doctor)
             }
         }
 
