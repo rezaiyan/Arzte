@@ -38,6 +38,7 @@ dependencies {
     implementation(Deps.material)
     implementation(Deps.picasso)
     implementation(Deps.recyclerview)
+    implementation(Deps.gson)
     testImplementation(TestLibraries.junit)
     androidTestImplementation(TestLibraries.runner)
     androidTestImplementation(TestLibraries.espressoCore)

@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="vivy_doctors_list">Vivy Doctors</string>
-
+    <string name="recent_doctors_list">Recent Doctors</string>
 
     <string name="failure_network_connection">No Network Connection.</string>
     <string name="failure_server_error">Server Error</string>
-    <string name="failure_doctors_list_unavailable">Movies Unavailable.</string>
+    <string name="failure_doctors_list_unavailable">Doctors Unavailable.</string>
     <string name="action_refresh">Refresh</string>
     <string name="not_found">404 \n\n Not Found</string>
     <string name="avatar_transaction_name">avatar</string>

@@ -13,13 +13,13 @@ import javax.inject.Singleton
 @Singleton
 class DoctorsService
 @Inject constructor(retrofit: Retrofit) : DoctorsApi {
-    private val moviesApi by lazy { retrofit.create(DoctorsApi::class.java) }
+    private val api by lazy { retrofit.create(DoctorsApi::class.java) }
 
     override fun doctors(path: String?): Call<DoctorResponse> {
         return if (path.isNullOrBlank()) {
-            moviesApi.doctors("")
+            api.doctors("")
         } else {
-            moviesApi.doctors("-$path")
+            api.doctors("-$path")
         }
 
     }

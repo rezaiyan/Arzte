@@ -40,6 +40,11 @@ class ApplicationModule(private val application: Arzte) {
         return okHttpClientBuilder.build()
     }
 
+
+    @Provides
+    @Singleton
+    fun provideCache(context: Context) = context.getSharedPreferences("Arzte", Context.MODE_PRIVATE)
+
     @Provides
     @Singleton
     fun provideDoctorsRepository(repository: DoctorsRepositoryImpl): DoctorsRepository = repository

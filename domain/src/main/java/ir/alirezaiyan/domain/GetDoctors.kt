@@ -1,9 +1,9 @@
 package ir.alirezaiyan.domain
 
 import ir.alirezaiyan.data.entity.Doctor
+import ir.alirezaiyan.data.entity.None
 import ir.alirezaiyan.data.repository.DoctorsRepository
 import ir.alirezaiyan.domain.ext.UseCase
-import ir.alirezaiyan.domain.ext.UseCase.None
 import javax.inject.Inject
 
 /**

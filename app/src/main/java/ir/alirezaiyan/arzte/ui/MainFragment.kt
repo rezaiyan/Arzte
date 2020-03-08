@@ -3,7 +3,6 @@ package ir.alirezaiyan.arzte.ui
 import android.os.Bundle
 import android.view.View
 import android.widget.ImageView
-import android.widget.LinearLayout
 import androidx.annotation.StringRes
 import androidx.core.app.ActivityOptionsCompat
 import androidx.fragment.app.FragmentActivity
@@ -13,10 +12,12 @@ import ir.alirezaiyan.arzte.Arzte
 import ir.alirezaiyan.arzte.R
 import ir.alirezaiyan.arzte.core.di.ApplicationComponent
 import ir.alirezaiyan.arzte.ui.doctorDetails.DoctorDetailsActivity
+import ir.alirezaiyan.arzte.ui.recentDoctors.RecentDoctorsAdapter
 import ir.alirezaiyan.arzte.ui.vivyDoctors.VivyDoctorsAdapter
 import ir.alirezaiyan.base.BaseFragment
 import ir.alirezaiyan.base.component.DoctorListComponent
 import ir.alirezaiyan.base.ext.Failure
+import ir.alirezaiyan.base.extention.gone
 import ir.alirezaiyan.base.extention.invisible
 import ir.alirezaiyan.base.extention.visible
 import ir.alirezaiyan.base.failure
@@ -34,7 +35,6 @@ import javax.inject.Inject
 class MainFragment : BaseFragment() {
 
     override fun layoutId() = R.layout.fragment_main
-    private lateinit var mainContainer: LinearLayout
 
     private val appComponent: ApplicationComponent by lazy(mode = LazyThreadSafetyMode.NONE) {
         (activity?.application as Arzte).appComponent
@@ -43,6 +43,8 @@ class MainFragment : BaseFragment() {
     lateinit var viewModelFactory: ViewModelProvider.Factory
     @Inject
     lateinit var vivyDoctorsAdapter: VivyDoctorsAdapter
+    @Inject
+    lateinit var recentDoctorsAdapter: RecentDoctorsAdapter
 
     private lateinit var mainViewModel: MainViewModel
 
@@ -55,24 +57,24 @@ class MainFragment : BaseFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         appComponent.inject(this)
-        mainContainer = view.findViewById(R.id.mainContainer)
 
         showProgress()
         mainViewModel = viewModel(viewModelFactory) {
-            observe(doctors, ::renderMoviesList)
+            observe(vivyDoctorsLiveData, ::renderVivyList)
+            observe(recentDoctorsLiveData, ::renderRecentList)
             failure(failure, ::handleFailure)
         }
 
         val recentDoctorListComponent = DoctorListComponent
-            .Builder<VivyDoctorsAdapter.ViewHolder>(requireContext())
-            .title(getString(R.string.vivy_doctors_list))
-            .adapter(vivyDoctorsAdapter)
+            .Builder<RecentDoctorsAdapter.ViewHolder>(requireContext())
+            .title(getString(R.string.recent_doctors_list))
+            .adapter(recentDoctorsAdapter)
             .scrollListener(endlessScroll)
             .layoutManager(LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false))
             .build()
 
         fragmentHeaderContainer.addView(recentDoctorListComponent)
-
+        fragmentHeaderContainer.gone()
 
         val doctorListComponent = DoctorListComponent
             .Builder<VivyDoctorsAdapter.ViewHolder>(requireContext())
@@ -85,9 +87,17 @@ class MainFragment : BaseFragment() {
         mainContainer.addView(doctorListComponent)
 
 
-        vivyDoctorsAdapter.clickListener = { movie, navigationExtras ->
-            showDoctorDetails(activity!!, movie, navigationExtras)
+        val onVivyDoctorClickListener: (Doctor, View) -> Unit = { doctor, navigationExtras ->
+            mainViewModel.updateRecentDoctors(doctor)
+            showDoctorDetails(activity!!, doctor, navigationExtras)
         }
+
+        val onRecentDoctorClickListener: (Doctor, View) -> Unit = { doctor, navigationExtras ->
+            showDoctorDetails(activity!!, doctor, navigationExtras)
+        }
+        vivyDoctorsAdapter.clickListener = onVivyDoctorClickListener
+        recentDoctorsAdapter.clickListener = onRecentDoctorClickListener
+
     }
 
     private fun loadDoctorsList() {
@@ -97,10 +107,20 @@ class MainFragment : BaseFragment() {
         mainViewModel.loadDoctors()
     }
 
-    private fun renderMoviesList(doctors: List<Doctor>?) {
+    private fun renderVivyList(doctors: List<Doctor>?) {
+        doctors?.sortedBy { it.rating!!.toFloat() }
         vivyDoctorsAdapter.collection += doctors.orEmpty()
 
         hideProgress()
+    }
+
+    private fun renderRecentList(doctors: List<Doctor>?) {
+        recentDoctorsAdapter.collection = doctors.orEmpty()
+        if (recentDoctorsAdapter.itemCount > 0) {
+            fragmentHeaderContainer.visible()
+        } else {
+            fragmentHeaderContainer.gone()
+        }
     }
 
     private fun handleFailure(failure: Failure?) {

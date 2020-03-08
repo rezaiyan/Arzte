@@ -10,4 +10,5 @@ import ir.alirezaiyan.data.entity.Doctor
  */
 interface DoctorsRepository {
     fun doctors(): Either<Failure, List<Doctor>>
+    fun updateRecentDoctors(doctor: Doctor?): Either<Failure, List<Doctor>>
 }
