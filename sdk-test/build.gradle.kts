@@ -32,11 +32,13 @@ android {
 }
 
 dependencies {
-    implementation(project(AppModule.sdkBase))
     implementation(Deps.kotlin)
-    implementation(Deps.gson)
-    implementation(Deps.dagger)
-    implementation(Deps.retrofit)
-    testImplementation(TestLibraries.junit)
-    testImplementation(TestLibraries.mockito)
+    implementation(TestLibraries.junit)
+    implementation(TestLibraries.runner)
+    implementation(TestLibraries.espressoCore)
+    implementation(TestLibraries.espressoIntent)
+    implementation(TestLibraries.mockitoKotlin)
+    implementation(TestLibraries.kluent)
+    implementation(TestLibraries.robolectric)
+    implementation(TestLibraries.xjunit)
 }

@@ -60,6 +60,7 @@ object AppModule {
     const val domain = ":domain"
     const val app = ":app"
     const val sdkBase = ":sdk-base"
+    const val sdkTest = ":sdk-test"
 }
 
 object Deps {
@@ -98,7 +99,7 @@ object TestLibraries {
     const val espressoCore = "androidx.test.espresso:espresso-core:3.1.0"
     const val espressoIntent = "androidx.test.espresso:espresso-intents:3.1.0"
     const val espressoContrib = "androidx.test.espresso:espresso-contrib:3.1.0"
-    const val xjunit = "androidx.test.ext:junit:1.0.0"
+    const val xjunit = "androidx.test.ext:junit:1.1.1"
     const val mockito = "org.mockito:mockito-core:${Versions.mockito}"
     const val assertjCore = "org.assertj:assertj-core:${Versions.assertjCore}"
     const val mockitoKotlin = "com.nhaarman.mockitokotlin2:mockito-kotlin:${Versions.mockitoKotlin}"

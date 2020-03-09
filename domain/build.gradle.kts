@@ -39,4 +39,5 @@ dependencies {
     implementation(project(AppModule.sdkBase))
     testImplementation(TestLibraries.kluent)
     testImplementation(TestLibraries.junit)
+    testImplementation(TestLibraries.mockitoKotlin)
 }

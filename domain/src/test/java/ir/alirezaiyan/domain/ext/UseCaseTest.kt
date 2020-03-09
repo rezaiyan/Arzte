@@ -19,7 +19,6 @@ class UseCaseTest {
 
     private val useCase = MyUseCase()
 
-
     private val actualTestResult = Either.Right(MyType(TYPE_TEST))
 
     @Test

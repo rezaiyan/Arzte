@@ -17,6 +17,7 @@ class Cache @Inject constructor() {
     lateinit var cache: SharedPreferences
     private val RECENT_DOCTORS_KEY = "recentDoctors"
 
+
     fun updateRecentDoctors(doctor: Doctor?) {
         val doctorJsonList = getRecentDoctors()
 
