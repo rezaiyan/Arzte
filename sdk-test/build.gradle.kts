@@ -32,11 +32,11 @@ android {
 }
 
 dependencies {
-    implementation(Deps.kotlin)
-    implementation(TestLibraries.junit)
-    implementation(TestLibraries.runner)
-    implementation(TestLibraries.espressoCore)
-    implementation(TestLibraries.espressoIntent)
-    implementation(TestLibraries.mockitoKotlin)
-    implementation(TestLibraries.xjunit)
+    testImplementation(Deps.kotlin)
+    testImplementation(TestLibraries.junit)
+    testImplementation(TestLibraries.runner)
+    testImplementation(TestLibraries.espressoCore)
+    testImplementation(TestLibraries.espressoIntent)
+    testImplementation(TestLibraries.mockitoKotlin)
+    testImplementation(TestLibraries.xjunit)
 }

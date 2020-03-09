@@ -39,5 +39,6 @@ dependencies {
     implementation(Deps.dagger)
     implementation(Deps.retrofit)
     testImplementation(TestLibraries.junit)
-    testImplementation(TestLibraries.mockito)
+    testImplementation(TestLibraries.mockitoKotlin)
+    testImplementation(TestLibraries.kluent)
 }
