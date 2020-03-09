@@ -6,17 +6,17 @@ import com.nhaarman.mockitokotlin2.verifyNoMoreInteractions
 import ir.alirezaiyan.base.ext.Either
 import ir.alirezaiyan.data.entity.Doctor
 import ir.alirezaiyan.data.repository.DoctorsRepository
+import ir.alirezaiyan.test.UnitTest
 import kotlinx.coroutines.runBlocking
 import org.junit.Before
 import org.junit.Test
 import org.mockito.Mock
-import org.mockito.MockitoAnnotations
 
 /**
  * @author Ali (alirezaiyann@gmail.com)
  * @since 3/9/2020 5:10 PM.
  */
-class RecentDoctorsTest {
+class RecentDoctorsTest : UnitTest() {
 
     private lateinit var recentDoctors: RecentDoctors
 
@@ -27,7 +27,6 @@ class RecentDoctorsTest {
 
     @Before
     fun setup() {
-        MockitoAnnotations.initMocks(this)
         recentDoctors = RecentDoctors(repository)
         given { repository.updateRecentDoctors(inputParam) }.willReturn(Either.Right(listOf()))
     }

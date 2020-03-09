@@ -12,13 +12,13 @@ object App {
 object Versions {
     const val gradle = "3.5.3"
     const val kotlin = "1.3.10"
-    const val coroutines = "1.0.1"
+    const val coroutines = "1.3.0"
 
     const val appcompat = "1.1.0"
     const val material = "1.1.0-alpha10"
     const val recyclerview = "1.0.0"
     const val dagger = "2.11"
-    val gson = "2.8.5"
+    const val gson = "2.8.5"
     const val picasso = "2.71828"
     const val okHttp = "3.12.0"
     const val okHttpInterceptor = "3.8.1"
@@ -36,8 +36,8 @@ object Versions {
     const val assertjCore = "3.11.1"
     const val mockitoKotlin = "2.0.0-RC1"
     const val mockitoInline = "2.8.9"
-    const val robolectric_version = "3.8"
-    const val kluent_version = "1.14"
+    const val robolectric = "3.8"
+    const val kluent = "1.14"
 
 }
 
@@ -84,6 +84,8 @@ object Deps {
     const val kotlin = "org.jetbrains.kotlin:kotlin-stdlib-jdk8:${Versions.kotlin}"
     const val ktx = "androidx.core:core-ktx:${Versions.ktx}"
     const val coroutines = "org.jetbrains.kotlinx:kotlinx-coroutines-core:${Versions.coroutines}"
+    const val coroutinesTest =
+        "org.jetbrains.kotlinx:kotlinx-coroutines-test:${Versions.coroutines}"
     const val coroutinesAndroid =
         "org.jetbrains.kotlinx:kotlinx-coroutines-android:${Versions.coroutines}"
 }
@@ -105,8 +107,8 @@ object TestLibraries {
     const val mockitoKotlin = "com.nhaarman.mockitokotlin2:mockito-kotlin:${Versions.mockitoKotlin}"
     const val mockitoInline = "org.mockito:mockito-inline:${Versions.mockitoInline}"
     const val lifecycleTesting = "androidx.arch.core:core-testing:${Versions.lifecycle}"
-    const val robolectric = "org.robolectric:robolectric:${Versions.robolectric_version}"
-    const val kluent = "org.amshove.kluent:kluent:${Versions.kluent_version}"
+    const val robolectric = "org.robolectric:robolectric:${Versions.robolectric}"
+    const val kluent = "org.amshove.kluent:kluent:${Versions.kluent}"
     const val retrofitMock = "com.squareup.retrofit2:retrofit-mock:${Versions.retrofit}"
     const val okhttpMockServer = "com.squareup.okhttp3:mockwebserver:${Versions.okHttp}"
 

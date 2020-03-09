@@ -38,7 +38,5 @@ dependencies {
     implementation(TestLibraries.espressoCore)
     implementation(TestLibraries.espressoIntent)
     implementation(TestLibraries.mockitoKotlin)
-    implementation(TestLibraries.kluent)
-    implementation(TestLibraries.robolectric)
     implementation(TestLibraries.xjunit)
 }

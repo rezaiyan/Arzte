@@ -20,7 +20,7 @@ import kotlin.properties.Delegates
 class VivyDoctorsAdapter
 @Inject constructor() : RecyclerView.Adapter<VivyDoctorsAdapter.ViewHolder>() {
 
-    internal var collection: List<Doctor> by Delegates.observable(emptyList()) { _, old, _ ->
+    internal var collection: List<Doctor> by Delegates.observable(emptyList()) { _, _, _ ->
         Collections.sort(collection, DoctorRateComparator())
         notifyDataSetChanged()
     }

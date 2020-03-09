@@ -33,6 +33,7 @@ android {
 
 dependencies {
     implementation(project(AppModule.sdkBase))
+    implementation(project(AppModule.sdkTest))
     implementation(Deps.kotlin)
     implementation(Deps.gson)
     implementation(Deps.dagger)

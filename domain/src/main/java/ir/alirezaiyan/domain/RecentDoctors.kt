@@ -12,5 +12,5 @@ import javax.inject.Inject
 class RecentDoctors @Inject constructor(private val repository: DoctorsRepository) :
     UseCase<List<Doctor>, Doctor?>() {
 
-    override suspend fun run(doctor: Doctor?) = repository.updateRecentDoctors(doctor)
+    override suspend fun run(params: Doctor?) = repository.updateRecentDoctors(params)
 }
