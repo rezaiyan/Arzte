@@ -45,7 +45,7 @@ class RecentDoctorsAdapter
         fun bind(doctor: Doctor, clickListener: (Doctor, View) -> Unit) {
             itemView.name.text = doctor.name
             itemView.avatar.loadCircular(doctor.photoId)
-            itemView.rate.text = doctor.rating?.toInt()!!.toString()
+            itemView.rate.text = doctor.rating.toString()
             itemView.setOnClickListener { clickListener(doctor, itemView.avatar) }
         }
     }

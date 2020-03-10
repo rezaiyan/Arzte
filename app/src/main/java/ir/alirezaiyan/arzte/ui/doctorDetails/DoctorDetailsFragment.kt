@@ -30,7 +30,7 @@ class DoctorDetailsFragment : BaseFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val doctor: Doctor = (arguments!!.getString(INTENT_EXTRA_PARAM_DOCTOR))!!.toDoctor()
+        val doctor: Doctor = (requireArguments().getString(INTENT_EXTRA_PARAM_DOCTOR))!!.toDoctor()
         ratingBar.rating = doctor.rating?.toFloat()!!
         avatar.loadFromUrl(doctor.photoId)
         name.text = doctor.name
