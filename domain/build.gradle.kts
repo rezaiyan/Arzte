@@ -37,9 +37,9 @@ dependencies {
     implementation(Deps.coroutinesTest)
     implementation(Deps.coroutinesAndroid)
     implementation(project(AppModule.data))
-    implementation(project(AppModule.sdkTest))
     implementation(project(AppModule.sdkBase))
     testImplementation(TestLibraries.kluent)
+    testImplementation(project(AppModule.sdkTest))
     testImplementation(TestLibraries.junit)
     testImplementation(TestLibraries.mockitoKotlin)
 }

@@ -36,6 +36,7 @@ dependencies {
     implementation(Deps.appcompat)
     implementation(Deps.ktx)
     implementation(Deps.material)
+    implementation(Deps.coroutines)
     implementation(Deps.picasso)
     implementation(Deps.recyclerview)
     implementation(Deps.gson)

@@ -2,6 +2,7 @@ package ir.alirezaiyan.domain.ext
 
 import ir.alirezaiyan.base.ext.Either
 import ir.alirezaiyan.base.ext.Failure
+import ir.alirezaiyan.base.ext.UseCase
 import ir.alirezaiyan.test.UnitTest
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
@@ -22,7 +23,7 @@ import org.junit.Test
 @ExperimentalCoroutinesApi
 class UseCaseTest : UnitTest() {
 
-    private val dispatcher: TestCoroutineDispatcher = TestCoroutineDispatcher()
+    private val dispatcher = TestCoroutineDispatcher()
 
     private val TYPE_TEST = "Test"
     private val TYPE_PARAM = "ParamTest"
@@ -54,8 +55,7 @@ class UseCaseTest : UnitTest() {
         var result: Either<Failure, MyType>? = null
         val params = MyParams("TestParam")
 
-        val onResult = { myResult: Either<Failure, MyType>
-            ->
+        val onResult = { myResult: Either<Failure, MyType> ->
             result = myResult
         }
 

@@ -1,7 +1,5 @@
-package ir.alirezaiyan.domain.ext
+package ir.alirezaiyan.base.ext
 
-import ir.alirezaiyan.base.ext.Either
-import ir.alirezaiyan.base.ext.Failure
 import kotlinx.coroutines.*
 
 /**
@@ -19,8 +17,9 @@ abstract class UseCase<out Type, in Params> where Type : Any {
 
     abstract suspend fun run(params: Params): Either<Failure, Type>
 
-    operator fun invoke(params: Params, onResult: (Either<Failure, Type>) -> Unit = {}) =
+    operator fun invoke(params: Params, onResult: (Either<Failure, Type>) -> Unit = {}) {
         uiScope.launch { onResult(withContext(Dispatchers.IO) { run(params) }) }
+    }
 
     fun cancel() {
         mainJob.cancel()

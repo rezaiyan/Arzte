@@ -53,7 +53,6 @@ dependencies {
     implementation(Deps.okhttp)
     implementation(Deps.okhttpInterceptor)
     testImplementation(TestLibraries.junit)
-    implementation(TestLibraries.fragmentTest)
     androidTestImplementation(TestLibraries.rules)
     androidTestImplementation(TestLibraries.runner)
     androidTestImplementation(TestLibraries.espressoCore)

@@ -1,8 +1,8 @@
 package ir.alirezaiyan.domain
 
+import ir.alirezaiyan.base.ext.UseCase
 import ir.alirezaiyan.data.entity.Doctor
 import ir.alirezaiyan.data.repository.DoctorsRepository
-import ir.alirezaiyan.domain.ext.UseCase
 import javax.inject.Inject
 
 /**
